@@ -1,0 +1,22 @@
+{% extends 'room_booking/base.html' %}
+
+{% block title %}
+	LogIn page
+{% endblock %}
+
+
+{% block content %}
+	<div class="container">
+		<p></p>
+		<h1>LogIn Here</h1>
+		<p></p>
+		<form action="{% url "room_booking:login" %}" method="POST" >
+			{% csrf_token %}
+			{{ form.as_p }}
+			<p></p>
+			<input type="submit" name="submit" value="LogIn">	
+		</form>
+	</div>
+	
+
+{% endblock %}

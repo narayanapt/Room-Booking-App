@@ -1,0 +1,22 @@
+{% extends 'room_booking/base.html' %}
+
+{% block title %}
+	Register
+{% endblock %}
+
+
+{% block content %}
+	<div class="container">
+		<p></p>
+		<h1>Register Here</h1>
+		<p></p>
+		<form action="{% url "room_booking:register" %}" method="POST">
+			{% csrf_token %}
+			{{ user_form.as_p }}
+			{{ visitor_form.as_p }}
+			<p></p>
+			<input class="btn btn-primary"type="submit" name="submit" value="Register">	
+		</form>
+	</div>
+
+{% endblock %}

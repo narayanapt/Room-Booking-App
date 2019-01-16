@@ -1,0 +1,54 @@
+{% extends 'room_booking/base.html' %}
+
+{% block title %}
+	Room Booking App 
+{% endblock %}
+
+
+{% block content %}
+
+	{% if room %}
+		<div class="container">
+			<h1>A New Room has been booked..</h1>
+			<h1>Room Details </h1>
+			<ul>
+				<li>{{ room.room_no }}</li>
+				<li>{{ room.location }}</li>
+				<li>{{ room.facilities }}</li>
+			</ul>
+			<h1>User Details</h1>
+				<p>{{ user.username }}</p>
+
+		</div>
+	{% endif %}
+
+	<div class="container">
+		<p></p>
+		<h1>Booking History</h1>
+		<p></p>
+		<p></p>
+		<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">Booking Id</th>
+						<th scope="col">From Date</th>
+						<th scope="col">To Date</th>
+						<th scope="col">Room Details</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					{% for book in booking_obj_list %}
+						<tr>
+							<th scope="row">{{ book.id }}</td>
+							<td>{{ book.from_date }}</td>
+							<td>{{ book.to_date }}</td>
+							<td>{{ book.room.room_no }}-->{{ book.room.location }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+	</div>
+
+{% endblock %}

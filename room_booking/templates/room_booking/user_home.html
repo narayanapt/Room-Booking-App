@@ -1,0 +1,67 @@
+{% extends 'room_booking/base.html' %}
+
+{% block title %}
+	LogIn page
+{% endblock %}
+
+
+{% block content %}
+	<div class="container">
+		<p></p>
+		<h1>List of Rooms Available</h1>
+		<p></p>
+		
+		<form action="{% url "room_booking:user-home" %}" method="POST" >
+			{% csrf_token %}
+
+			
+			{% if form %}
+				{{form.as_p}}
+			{% endif %}
+			
+			{% if rooms %}
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Room No</th>
+							<th scope="col">Location</th>
+							<th scope="col">Facilities</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						{% for room in rooms%}
+							<tr>
+								<th scope="row"><input type="radio" name="room_name" value="{{room.id}}"></th>
+								<td>{{ room.room_no }}</td>
+								<td>{{ room.location }}</td>
+								<td>{{ room.facilities }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+
+				</table>
+			{% endif %}
+
+			{% if form and rooms %}
+				<input type="submit" value="Book Room">
+			{% else %}
+				<input type="submit" name="submit" value="Show Availability">
+			{% endif %}
+
+		</form>
+	
+		<p></p>
+
+		<form action="{% url "room_booking:bookings" %}" method="POST">
+			{% csrf_token %}
+			
+			<p></p>
+			
+		</form>
+
+	</div>
+	
+
+{% endblock %}
